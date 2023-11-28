@@ -8,25 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const app_1 = __importDefault(require("./app"));
-require("dotenv").config();
-const port = process.env.PORT;
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield mongoose_1.default.connect(process.env.Database_URL);
-            app_1.default.listen(port, () => {
-                console.log(`Example app listening on port ${port}`);
-            });
-        }
-        catch (err) {
-            console.log(err, "in server.ts");
-        }
-    });
-}
-main();
+exports.serviceStudent = void 0;
+const student_model_1 = require("./student.model");
+const creatStudentIntoDB = (student) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield student_model_1.StudentModel.create(student);
+    return result;
+});
+const getALlstudentsDB = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield student_model_1.StudentModel.find();
+    return result;
+});
+exports.serviceStudent = {
+    creatStudentIntoDB, getALlstudentsDB
+};
