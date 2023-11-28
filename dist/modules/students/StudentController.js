@@ -33,6 +33,12 @@ const creatStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 const getALlstudents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield StudentServices_1.serviceStudent.getALlstudentsDB();
+        if (!result) {
+            return res.status(404).json({
+                success: false,
+                message: "Student not founded",
+            });
+        }
         res.status(200).json({
             success: true,
             message: "Student retrive successfully",
@@ -47,6 +53,84 @@ const getALlstudents = (req, res) => __awaiter(void 0, void 0, void 0, function*
         });
     }
 });
+const getSignleStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const result = yield StudentServices_1.serviceStudent.getAsigleStudentDB(id);
+        if (!result) {
+            return res.status(404).json({
+                success: false,
+                message: "Student not founded",
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: "Single Student retrive successfully",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.status(500).json({
+            success: false,
+            message: "Student not founded",
+            error: err,
+        });
+    }
+});
+const deleteSignelStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const result = yield StudentServices_1.serviceStudent.deleteStudentDB(id);
+        if (!result) {
+            return res.status(404).json({
+                success: false,
+                message: "Student not founded",
+            });
+        }
+        res.status(500).json({
+            success: true,
+            message: "studentDB deleted successfully",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.status(500).json({
+            success: false,
+            message: "Student cann't deleted",
+            error: err,
+        });
+    }
+});
+const updateSignelStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const data = req.body;
+        const result = yield StudentServices_1.serviceStudent.updateStudentDB(id, data);
+        if (!result) {
+            return res.status(404).json({
+                success: false,
+                message: "Student not founded",
+            });
+        }
+        res.status(500).json({
+            success: true,
+            message: "studentDB updated successfully",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.status(500).json({
+            success: false,
+            message: "Student cann't updated",
+            error: err,
+        });
+    }
+});
+//export allcontrolers
 exports.StudentAllControllers = {
-    creatStudent, getALlstudents
+    creatStudent,
+    getALlstudents,
+    getSignleStudent,
+    deleteSignelStudent,
+    updateSignelStudent,
 };

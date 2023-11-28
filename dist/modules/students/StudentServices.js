@@ -16,9 +16,26 @@ const creatStudentIntoDB = (student) => __awaiter(void 0, void 0, void 0, functi
     return result;
 });
 const getALlstudentsDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield student_model_1.StudentModel.find();
+    const result = yield student_model_1.StudentModel.find({}, { name: 1 });
     return result;
 });
+const getAsigleStudentDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield student_model_1.StudentModel.findOne({ _id: { $eq: id } });
+    return result;
+});
+const deleteStudentDB = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield student_model_1.StudentModel.deleteOne({ _id: id });
+    return result;
+});
+const updateStudentDB = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield student_model_1.StudentModel.updateOne({ _id: { $eq: id } }, { $set: data });
+    return result;
+});
+//export all the services
 exports.serviceStudent = {
-    creatStudentIntoDB, getALlstudentsDB
+    creatStudentIntoDB,
+    getALlstudentsDB,
+    getAsigleStudentDB,
+    deleteStudentDB,
+    updateStudentDB,
 };

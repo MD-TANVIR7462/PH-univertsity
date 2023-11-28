@@ -62,17 +62,17 @@ const localGuradianSchema = new mongoose_1.Schema({
 const studentSchema = new mongoose_1.Schema({
     id: { type: String },
     name: userNameSchema,
-    gender: ['male', 'female'],
+    gender: ["male", "female"],
     dateOfBirth: { type: String },
     email: { type: String, required: true },
     contactNo: { type: String, required: true },
     emergencyContactNo: { type: String, required: true },
-    bloogGroup: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+    bloogGroup: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"],
     presentAddress: { type: String, required: true },
     permanentAddres: { type: String, required: true },
     guardian: guardianSchema,
     localGuardian: localGuradianSchema,
     profileImg: { type: String },
-    isActive: ['active', 'blocked'],
+    isActive: ["active", "blocked"],
 });
-exports.StudentModel = (0, mongoose_1.model)('Student', studentSchema);
+exports.StudentModel = (0, mongoose_1.model)("Student", studentSchema);
