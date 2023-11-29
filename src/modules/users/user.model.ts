@@ -10,13 +10,14 @@ const userSchema = new Schema<Tuser>(
     status: {
       type: String,
       enum: ["in-progress", "blocked"],
-      required: true,
+
+      default: "in-progress",
     },
 
     role: {
       type: String,
       enum: ["admin", "student", "faculty"],
-      required: true,
+
     },
   },
   {
