@@ -16,7 +16,7 @@ const creatStudentIntoDB = (student) => __awaiter(void 0, void 0, void 0, functi
     return result;
 });
 const getALlstudentsDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield student_model_1.StudentModel.find({}, { name: 1 });
+    const result = yield student_model_1.StudentModel.find({}, {});
     return result;
 });
 const getAsigleStudentDB = (id) => __awaiter(void 0, void 0, void 0, function* () {

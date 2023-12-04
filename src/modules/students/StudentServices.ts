@@ -7,7 +7,7 @@ const creatStudentIntoDB = async (student: Student) => {
 };
 
 const getALlstudentsDB = async () => {
-  const result = await StudentModel.find({}, { name: 1 });
+  const result = await StudentModel.find({}, { });
   return result;
 };
 
