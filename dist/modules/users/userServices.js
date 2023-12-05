@@ -15,8 +15,8 @@ const creatUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield user_model_1.UserModel.create(data);
     return result;
 });
-const getUser = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield user_model_1.UserModel.findOne({ _id: { $eq: id } });
+const getUser = () => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield user_model_1.UserModel.find();
     return result;
 });
 const getSingleUser = (id) => __awaiter(void 0, void 0, void 0, function* () {

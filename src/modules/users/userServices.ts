@@ -6,8 +6,8 @@ const creatUser = async (data: Tuser) => {
   return result;
 };
 
-const getUser = async (id: string) => {
-  const result = await UserModel.findOne({ _id: { $eq: id } });
+const getUser = async () => {
+  const result = await UserModel.find()
   return result;
 };
 

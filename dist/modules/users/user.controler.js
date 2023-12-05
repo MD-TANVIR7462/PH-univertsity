@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UpdateSigleUserCl = exports.deleteSigleUserCl = exports.GetSigleUserCl = exports.GetUserCl = exports.createUserCl = void 0;
 const userServices_1 = require("./userServices");
 const createUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -31,3 +32,92 @@ const createUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 });
+exports.createUserCl = createUserCl;
+const GetUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield userServices_1.USerServices.getUser();
+        if (result) {
+            res.status(200).json({
+                success: true,
+                message: "User find successfully",
+                data: result,
+            });
+        }
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: err,
+        });
+    }
+});
+exports.GetUserCl = GetUserCl;
+const GetSigleUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const result = yield userServices_1.USerServices.getSingleUser(id);
+        if (result) {
+            res.status(200).json({
+                success: true,
+                message: "User fatched successfully",
+                data: result,
+            });
+        }
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: err,
+        });
+    }
+});
+exports.GetSigleUserCl = GetSigleUserCl;
+const deleteSigleUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const result = yield userServices_1.USerServices.deleteUser(id);
+        if (result) {
+            res.status(200).json({
+                success: true,
+                message: "User delete successfully",
+                data: result,
+            });
+        }
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: err,
+        });
+    }
+});
+exports.deleteSigleUserCl = deleteSigleUserCl;
+const UpdateSigleUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const data = req.body;
+        const result = yield userServices_1.USerServices.updateUser(id, data);
+        if (result) {
+            res.status(200).json({
+                success: true,
+                message: "User updated successfully",
+                data: result,
+            });
+        }
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: err,
+        });
+    }
+});
+exports.UpdateSigleUserCl = UpdateSigleUserCl;
