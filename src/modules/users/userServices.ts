@@ -1,3 +1,5 @@
+import { Student } from "../students/student.interface";
+import { StudentModel } from "../students/student.model";
 import { Tuser } from "./user.interface";
 import { UserModel } from "./user.model";
 
@@ -29,6 +31,13 @@ const updateUser = async (id: string, data: Partial<Tuser>) => {
     return result;
 }
 
+const creatStudentIntoDB = async (student: Student) => {
+  const result = await StudentModel.create(student);
+  return result;
+};
+
+
+
 //export all the services
 export const USerServices = {
     creatUser,
@@ -36,4 +45,5 @@ export const USerServices = {
     getSingleUser,
     deleteUser,
     updateUser,
+    creatStudentIntoDB
 }

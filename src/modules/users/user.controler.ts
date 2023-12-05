@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { USerServices } from "./userServices";
 
 
+
 export const createUserCl = async (req: Request, res: Response) => {
   try {
     const userData = req.body;
@@ -23,6 +24,26 @@ export const createUserCl = async (req: Request, res: Response) => {
     });
   }
 };
+export const creatStudent = async (req: Request, res: Response) => {
+  try {
+    const student = req.body;
+    const result = await USerServices.creatStudentIntoDB(student);
+    res.status(200).json({
+      success: true,
+      message: "Student created successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Student not created",
+      error: err,
+    });
+    console.log(err);
+  }
+};
+
+
 export const GetUserCl = async (req: Request, res: Response) => {
   try {
    

@@ -1,10 +1,6 @@
 import { Student } from "./student.interface";
 import { StudentModel } from "./student.model";
 
-const creatStudentIntoDB = async (student: Student) => {
-  const result = await StudentModel.create(student);
-  return result;
-};
 
 const getALlstudentsDB = async () => {
   const result = await StudentModel.find({}, { });
@@ -31,7 +27,7 @@ const updateStudentDB = async (id: string, data: Partial<Student>) => {
 
 //export all the services
 export const serviceStudent = {
-  creatStudentIntoDB,
+
   getALlstudentsDB,
   getAsigleStudentDB,
   deleteStudentDB,

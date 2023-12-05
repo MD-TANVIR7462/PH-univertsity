@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get("/",StudentAllControllers.getALlstudents);
 router.get("/:id",StudentAllControllers.getSignleStudent)
-router.post("/", StudentAllControllers.creatStudent);
+// router.post("/", StudentAllControllers.creatStudent);
 router.delete("/:id",StudentAllControllers.deleteSignelStudent)
 router.put('/:id',StudentAllControllers.updateSignelStudent)
 
