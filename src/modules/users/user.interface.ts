@@ -7,3 +7,8 @@ export type Tuser ={
    isDeleted :boolean;
 
 }
+export type TNewUser ={
+   role :string,
+   password :string,
+   id:string
+}

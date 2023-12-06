@@ -61,6 +61,12 @@ const localGuradianSchema = new mongoose_1.Schema({
 });
 const studentSchema = new mongoose_1.Schema({
     id: { type: String },
+    user: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        required: [true, "Id must be provided"],
+        unique: true,
+        ref: "UserModel"
+    },
     name: userNameSchema,
     gender: ["male", "female"],
     dateOfBirth: { type: String },
@@ -73,6 +79,5 @@ const studentSchema = new mongoose_1.Schema({
     guardian: guardianSchema,
     localGuardian: localGuradianSchema,
     profileImg: { type: String },
-    isActive: ["active", "blocked"],
 });
 exports.StudentModel = (0, mongoose_1.model)("Student", studentSchema);

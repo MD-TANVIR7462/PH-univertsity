@@ -11,10 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.serviceStudent = void 0;
 const student_model_1 = require("./student.model");
-const creatStudentIntoDB = (student) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield student_model_1.StudentModel.create(student);
-    return result;
-});
 const getALlstudentsDB = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield student_model_1.StudentModel.find({}, {});
     return result;
@@ -33,7 +29,6 @@ const updateStudentDB = (id, data) => __awaiter(void 0, void 0, void 0, function
 });
 //export all the services
 exports.serviceStudent = {
-    creatStudentIntoDB,
     getALlstudentsDB,
     getAsigleStudentDB,
     deleteStudentDB,

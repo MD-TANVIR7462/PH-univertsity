@@ -26,8 +26,8 @@ export const createUserCl = async (req: Request, res: Response) => {
 };
 export const creatStudent = async (req: Request, res: Response) => {
   try {
-    const student = req.body;
-    const result = await USerServices.creatStudentIntoDB(student);
+    const {password,student }= req.body;
+    const result = await USerServices.creatStudentIntoDB(student,password);
     res.status(200).json({
       success: true,
       message: "Student created successfully",

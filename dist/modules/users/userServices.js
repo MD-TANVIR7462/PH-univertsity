@@ -10,7 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.USerServices = void 0;
+const student_model_1 = require("../students/student.model");
 const user_model_1 = require("./user.model");
+require("dotenv").config();
 const creatUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield user_model_1.UserModel.create(data);
     return result;
@@ -31,6 +33,20 @@ const updateUser = (id, data) => __awaiter(void 0, void 0, void 0, function* () 
     const result = yield user_model_1.UserModel.updateOne({ _id: { $eq: id } }, { $set: data });
     return result;
 });
+const creatStudentIntoDB = (student, password) => __awaiter(void 0, void 0, void 0, function* () {
+    const user = {};
+    user.role = "student";
+    user.password = password || process.env.Default_pass;
+    user.id = "2030100001";
+    const NewUSer = yield user_model_1.UserModel.create(user);
+    //creat a student //
+    if (Object.keys(NewUSer).length) {
+        student.id = NewUSer.id;
+        student.user = NewUSer._id;
+    }
+    const NewStudent = yield student_model_1.StudentModel.create(student);
+    return NewStudent;
+});
 //export all the services
 exports.USerServices = {
     creatUser,
@@ -38,4 +54,5 @@ exports.USerServices = {
     getSingleUser,
     deleteUser,
     updateUser,
+    creatStudentIntoDB,
 };
