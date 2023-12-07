@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { USerServices } from "./userServices";
 
 
 
-export const createUserCl = async (req: Request, res: Response) => {
+export const createUserCl = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const userData = req.body;
     const result = await USerServices.creatUser(userData);
@@ -16,15 +16,10 @@ export const createUserCl = async (req: Request, res: Response) => {
       });
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      success: false,
-      message: "Internal server error",
-      error: err,
-    });
+   next(err)
   }
 };
-export const creatStudent = async (req: Request, res: Response) => {
+export const creatStudent = async (req: Request, res: Response,next:NextFunction) => {
   try {
     const {password,student }= req.body;
     const result = await USerServices.creatStudentIntoDB(student,password);
@@ -34,17 +29,12 @@ export const creatStudent = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Student not created",
-      error: err,
-    });
-    console.log(err);
+    next(err)
   }
 };
 
 
-export const GetUserCl = async (req: Request, res: Response) => {
+export const GetUserCl = async (req: Request, res: Response,next:NextFunction) => {
   try {
    
     const result = await USerServices.getUser();
@@ -57,15 +47,10 @@ export const GetUserCl = async (req: Request, res: Response) => {
       });
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      success: false,
-      message: "Internal server error",
-      error: err,
-    });
+    next(err)
   }
 };
-export const GetSigleUserCl = async (req: Request, res: Response) => {
+export const GetSigleUserCl = async (req: Request, res: Response,next:NextFunction) => {
   try {
    const {id} = req.params;
     const result = await USerServices.getSingleUser(id);
@@ -86,7 +71,7 @@ export const GetSigleUserCl = async (req: Request, res: Response) => {
     });
   }
 };
-export const deleteSigleUserCl = async (req: Request, res: Response) => {
+export const deleteSigleUserCl = async (req: Request, res: Response,next:NextFunction ) => {
   try {
    const {id} = req.params;
     const result = await USerServices.deleteUser(id);
@@ -99,15 +84,10 @@ export const deleteSigleUserCl = async (req: Request, res: Response) => {
       });
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      success: false,
-      message: "Internal server error",
-      error: err,
-    });
+    next(err)
   }
 };
-export const UpdateSigleUserCl = async (req: Request, res: Response) => {
+export const UpdateSigleUserCl = async (req: Request, res: Response ,next:NextFunction) => {
   try {
    const {id} = req.params;
    const data = req.body; 
@@ -121,11 +101,6 @@ export const UpdateSigleUserCl = async (req: Request, res: Response) => {
       });
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      success: false,
-      message: "Internal server error",
-      error: err,
-    });
+   next(err)
   }
 };

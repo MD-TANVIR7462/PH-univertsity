@@ -17,7 +17,12 @@ app.use('/api/students', StudentRoutes_1.studentRoutes);
 app.use('/api/users', user_route_1.userRouter);
 //not found route 
 app.use(notFound_1.notFound);
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.use((err, req, res, next) => {
+    const message = err.message || "something went wrong";
+    res.status(500).json({
+        success: false,
+        message,
+        errror: err
+    });
 });
 exports.default = app;

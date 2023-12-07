@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateSigleUserCl = exports.deleteSigleUserCl = exports.GetSigleUserCl = exports.GetUserCl = exports.creatStudent = exports.createUserCl = void 0;
 const userServices_1 = require("./userServices");
-const createUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createUserCl = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userData = req.body;
         const result = yield userServices_1.USerServices.creatUser(userData);
@@ -24,16 +24,11 @@ const createUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         }
     }
     catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-            error: err,
-        });
+        next(err);
     }
 });
 exports.createUserCl = createUserCl;
-const creatStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const creatStudent = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { password, student } = req.body;
         const result = yield userServices_1.USerServices.creatStudentIntoDB(student, password);
@@ -44,16 +39,11 @@ const creatStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
     catch (err) {
-        res.status(500).json({
-            success: false,
-            message: "Student not created",
-            error: err,
-        });
-        console.log(err);
+        next(err);
     }
 });
 exports.creatStudent = creatStudent;
-const GetUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const GetUserCl = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield userServices_1.USerServices.getUser();
         if (result) {
@@ -65,16 +55,11 @@ const GetUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
     }
     catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-            error: err,
-        });
+        next(err);
     }
 });
 exports.GetUserCl = GetUserCl;
-const GetSigleUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const GetSigleUserCl = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         const result = yield userServices_1.USerServices.getSingleUser(id);
@@ -96,7 +81,7 @@ const GetSigleUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.GetSigleUserCl = GetSigleUserCl;
-const deleteSigleUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteSigleUserCl = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         const result = yield userServices_1.USerServices.deleteUser(id);
@@ -109,16 +94,11 @@ const deleteSigleUserCl = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }
     }
     catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-            error: err,
-        });
+        next(err);
     }
 });
 exports.deleteSigleUserCl = deleteSigleUserCl;
-const UpdateSigleUserCl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const UpdateSigleUserCl = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
         const data = req.body;
@@ -132,12 +112,7 @@ const UpdateSigleUserCl = (req, res) => __awaiter(void 0, void 0, void 0, functi
         }
     }
     catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-            error: err,
-        });
+        next(err);
     }
 });
 exports.UpdateSigleUserCl = UpdateSigleUserCl;
