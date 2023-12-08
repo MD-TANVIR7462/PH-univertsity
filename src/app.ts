@@ -4,6 +4,7 @@ import cors from "cors"
 import { studentRoutes } from './modules/students/StudentRoutes'
 import { userRouter } from './modules/users/user.route'
 import { notFound } from './middlewares/notFound'
+import { SemestrRoutes } from './modules/Semester/semesterRoutes'
 
 //parsers
  app.use(cors())
@@ -13,6 +14,7 @@ import { notFound } from './middlewares/notFound'
 
 app.use('/api/students', studentRoutes)
 app.use('/api/users', userRouter)
+app.use('/api/semester',SemestrRoutes)
 
 //not found route 
 app.use(notFound)

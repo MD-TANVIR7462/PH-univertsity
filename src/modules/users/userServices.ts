@@ -36,7 +36,7 @@ const creatStudentIntoDB = async (student: Student, password: string) => {
   const user: Partial<Tuser> = {};
   user.role = "student";
   user.password = password || (process.env.Default_pass as string);
-  user.id = "2030100001";
+  user.id = "203010001";
   const NewUSer = await UserModel.create(user);
 
   //creat a student //

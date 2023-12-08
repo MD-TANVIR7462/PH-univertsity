@@ -37,7 +37,7 @@ const creatStudentIntoDB = (student, password) => __awaiter(void 0, void 0, void
     const user = {};
     user.role = "student";
     user.password = password || process.env.Default_pass;
-    user.id = "2030100001";
+    user.id = "203010001";
     const NewUSer = yield user_model_1.UserModel.create(user);
     //creat a student //
     if (Object.keys(NewUSer).length) {
