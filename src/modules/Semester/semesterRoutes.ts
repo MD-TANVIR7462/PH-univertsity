@@ -4,7 +4,7 @@ const router = Router()
 
 router.get('/',SemesterController.getSemester)
 router.post("/",SemesterController.createSemester)
-router.get('/:id')
+router.get('/:id',SemesterController.getSingleSemester)
 router.put('/:id',)
 router.delete('/:id')
 

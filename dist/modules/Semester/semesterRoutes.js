@@ -6,7 +6,7 @@ const semester_controler_1 = require("./semester.controler");
 const router = (0, express_1.Router)();
 router.get('/', semester_controler_1.SemesterController.getSemester);
 router.post("/", semester_controler_1.SemesterController.createSemester);
-router.get('/:id');
+router.get('/:id', semester_controler_1.SemesterController.getSingleSemester);
 router.put('/:id');
 router.delete('/:id');
 exports.SemestrRoutes = router;

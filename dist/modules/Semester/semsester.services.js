@@ -12,14 +12,35 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SemesterServices = void 0;
 const semester_model_1 = require("./semester.model");
 const cresteSemesterInDB = (data) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield semester_model_1.SemesterModel.create(data);
-    return result;
+    const { name, year } = data;
+    //validate exixting user in DB
+    const validatExistingUser = yield semester_model_1.SemesterModel.findOne({
+        name: { $eq: name },
+        year: { $eq: year },
+    });
+    //if semester not exist the create new one
+    if (!validatExistingUser) {
+        const result = yield semester_model_1.SemesterModel.create(data);
+        return result;
+    }
+    else {
+        const result = {
+            success: false,
+            message: "Semester already exists in this year",
+        };
+        return result;
+    }
 });
 const getSemesterInDb = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield semester_model_1.SemesterModel.find({}, { name: 1 });
     return result;
 });
+const getSingleSemesterInDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield semester_model_1.SemesterModel.findOne({ _id: { $eq: id } });
+    return result;
+});
 exports.SemesterServices = {
     cresteSemesterInDB,
-    getSemesterInDb
+    getSemesterInDb,
+    getSingleSemesterInDb,
 };

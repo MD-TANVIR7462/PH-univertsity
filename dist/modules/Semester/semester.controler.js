@@ -38,7 +38,22 @@ const getSemester = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         next(err);
     }
 });
+const getSingleSemester = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const result = yield semsester_services_1.SemesterServices.getSingleSemesterInDb(id);
+        res.status(200).json({
+            success: true,
+            message: "Single semseter retrived successfully",
+            data: result,
+        });
+    }
+    catch (err) {
+        next(err);
+    }
+});
 exports.SemesterController = {
     createSemester,
-    getSemester
+    getSemester,
+    getSingleSemester
 };

@@ -31,7 +31,27 @@ const getSemester = async (req: Request, res: Response, next: NextFunction) => {
     next(err);
   }
 };
+
+const getSingleSemester = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const result = await SemesterServices.getSingleSemesterInDb(id);
+    res.status(200).json({
+      success: true,
+      message: "Single semseter retrived successfully",
+      data: result,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const SemesterController = {
   createSemester,
-  getSemester
+  getSemester,
+  getSingleSemester
 };
